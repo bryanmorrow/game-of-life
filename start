@@ -1,0 +1,23 @@
+#!/usr/bin/env ruby
+require './life.rb'
+
+seed_file = ARGV[0] || Dir['./seeds/*'].sample
+
+seed = File.read(seed_file)
+
+instance = Life.new(seed: seed)
+
+while 1 do
+  # Clear the screen
+  print "\033[2J"
+
+  # Move life forward one step
+  instance.advance
+
+  # Print the current state of the game
+  print "#{instance.to_grid}\n"
+
+  print "Iteration: #{instance.current_iteration}, Seed file: #{seed_file}\n"
+
+  sleep 0.2
+end
